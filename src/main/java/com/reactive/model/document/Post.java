@@ -7,16 +7,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Builder
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "users")
-public class User {
+@Document(collection = "posts")
+public class Post {
 
     @Id
     //Tiene que ser de tipo String porque es alfanumérico
     private String id;
-    private String name;
-    private String username;
-    private String email;
-
+    private String userId;
+    private String title;
+    private String body;
 }

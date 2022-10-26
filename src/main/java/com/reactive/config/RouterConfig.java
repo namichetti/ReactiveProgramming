@@ -1,6 +1,6 @@
 package com.reactive.config;
 
-import com.reactive.controller.UserHanlder;
+import com.reactive.controller.PostHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,15 +13,15 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 public class RouterConfig {
 
     @Autowired
-    private UserHanlder userHanlder;
+    private PostHandler postHandler;
 
     @Bean
     public RouterFunction<ServerResponse> routes(){
-        return RouterFunctions.route(RequestPredicates.GET("/api/"),p->this.userHanlder.findAll())
-                .andRoute(RequestPredicates.GET("/api/{id}"),userHanlder::findById)
-                .andRoute(RequestPredicates.POST("/api/"),userHanlder::save)
-                .andRoute(RequestPredicates.PUT("/api/{id}"),userHanlder::update)
-                .andRoute(RequestPredicates.DELETE("/api/{id}"),userHanlder::deleteById);
+        return RouterFunctions.route(RequestPredicates.GET("/api/"),p->this.postHandler.findAll())
+                .andRoute(RequestPredicates.GET("/api/{id}"),postHandler::findById)
+                .andRoute(RequestPredicates.POST("/api/"),postHandler::save)
+                .andRoute(RequestPredicates.PUT("/api/{id}"),postHandler::update)
+                .andRoute(RequestPredicates.DELETE("/api/{id}"),postHandler::deleteById);
     }
 
 }
